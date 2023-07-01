@@ -1,0 +1,13 @@
+<config>
+
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']">
+		
+		<display_entry item="LegendaryHarvester" unlock_level="50,60,70,80,90,100" />
+
+		<effect_group>
+			<passive_effect name="RecipeTagUnlocked" operation="base_set" level="50,100" value="1" tags="LegendaryHarvester"/>
+
+			<passive_effect name="CraftingTier" operation="base_add" level="60,70,80,90,100" value="1,2,3,4,5" tags="LegendaryHarvester"/>
+		</effect_group>
+	</append>
+  </config>

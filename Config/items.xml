@@ -1,0 +1,109 @@
+<configs>
+
+	<append xpath="/items">
+
+<item name="LegendaryHarvester">
+	<property name="Extends" value="meleeWpnKnucklesT1IronKnuckles"/>
+	<property name="Tags" value="knife,melee,grunting,light,perkFlurryOfAgility,weapon,meleeWeapon,attAgility,perkDeepCuts,perkTheHuntsman,canHaveCosmetic,bladeSkill"/>
+	<property name="Material" value="MmeleeWpnKnucklesParts"/>
+	<property name="TintColor" value="#00ffff"/>
+	<property name="Weight" value="6"/>
+	<property name="CustomIcon" value="meleeWpnKnucklesT3SteelKnuckles"/>
+	<property name="CustomIconTint" value="#00ffff"/>
+	<property name="Meshfile" value="@:Other/Items/Weapons/Melee/Knuckles/knucklesSpikedRight_Prefab.prefab"/>
+	<property name="HoldType" value="79"/>
+	<property name="TraderStageTemplate" value="baseTier2"/>
+	<property name="UnlockedBy" value="craftingKnuckles"/><!-- meleeWpnKnucklesT3SteelKnucklesSchematic, -->
+	<property name="SoundUnholster" value="weapon_unholster"/>
+	<property name="SoundHolster" value="weapon_holster"/>
+
+	<property class="Action0">
+		<property name="Class" value="DynamicMelee"/>
+		<property name="Damage_type" value="Piercing"/>
+		<property name="ToolCategory.Butcher" value="5" param1="1.5"/>
+		<property name="Sound_start" value="knuckles_steel_swinglight"/>
+		<property class="HitSounds">
+		<property name="Override0" value="organic" param1="metalstaborganic"/></property>
+		<property class="GrazeSounds">
+		<property name="Override0" value="organic" param1="metalgrazeorganic"/></property>
+	</property>
+
+	<property class="Action1">
+		<property name="Class" value="DynamicMelee"/>
+		<property name="Damage_type" value="Slashing,Piercing"/>
+		<property name="Sphere" value=".15"/>   <!-- limit to 0.15, else the sphere cast can overlap the target already -->
+		<property name="Sound_start" value="machete_swingheavy"/>
+		<property name="ToolCategory.Butcher" value="0" param1="4.7"/>
+		<property name="UsePowerAttackAnimation" value="true"/>
+		<property name="UseGrazingHits" value="true"/>
+		<property name="IsHorizontalSwing" value="true"/>
+		<property name="GrazeStart" value=".3"/>
+		<property name="GrazeEnd" value=".4"/>
+		<property name="SwingDegrees" value="-80"/>
+		<property name="SwingAngle" value="-60"/>
+		<property class="HitSounds">
+			<property name="Override0" value="organic" param1="metalslashorganic"/>
+		</property>
+		<property class="GrazeSounds">
+			<property name="Override0" value="organic" param1="metalgrazeorganic"/>
+		</property>
+	</property>
+
+	<effect_group name="meleeWpnKnucklesT3SteelKnuckles">
+		<passive_effect name="AttacksPerMinute" operation="base_set" value="220" tags="perkDeepCuts,perkBrawler,perkFlurryOfFortitude,perkFlurryOfAgility"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+		<passive_effect name="DegradationMax" operation="base_set" value="777,1746" tier="1,6" tags="perkDeepCuts,perkBrawler"/>
+		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts,perkBrawler"/>
+		<passive_effect name="MaxRange" operation="base_set" value="2.5" tags="perkDeepCuts,perkBrawler"/>
+		<passive_effect name="BlockRange" operation="base_set" value="3" tags="perkDeepCuts,perkBrawler"/>
+		<passive_effect name="ModSlots" operation="base_set" value="1,2,3,4,5,6" tier="1,2,3,4,5,6"/>
+		<passive_effect name="ModPowerBonus" operation="perc_add" value=".2" tags="EntityDamage,BlockDamage"/>
+		<passive_effect name="ModPowerBonus" operation="base_add" value="380" tags="EconomicValue"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="22" tags="perkDeepCuts,knife,perkBrawler"/>
+		<passive_effect name="EntityDamage" operation="perc_add" value="-.04,.1" tags="perkBrawler"/> <!-- random EntityDmg -->
+		<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts,perkBrawler"/> <!-- tier bonus -->
+		<passive_effect name="BlockDamage" operation="base_set" value="6" tags="perkDeepCuts,perkBrawler"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts,perkBrawler"/> <!-- random BlockDmg -->
+		<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts,perkBrawler"/> <!-- tier bonus -->
+
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="earth"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="stone"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="metal"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="1.7" tags="organic"/>
+		<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>		
+		<passive_effect name="BuffProcChance" operation="base_set" value=".15" tags="buffInjuryBleedingTwo"/>
+		<passive_effect name="BuffProcChance" operation="base_set" value=".10" tags="buffInfectionCatch"/>
+		<passive_effect name="BuffProcChance" operation="base_set" value=".15" tags="buffInjuryStunned01"/>
+
+		<triggered_effect trigger="onSelfEquipStart" action="AddPart" part="LeftKnuckles" prefab="@:Other/Items/Weapons/Melee/Knuckles/knucklesSpikedLeft_Prefab.prefab" parentTransform="Propjoint" localPos="0,0,0" localRot="0,0,0">
+			<requirement name="IsFPV"/>
+		</triggered_effect>
+		<triggered_effect trigger="onSelfEquipStart" action="AddPart" part="LeftKnuckles" prefab="@:Other/Items/Weapons/Melee/Knuckles/knucklesSpikedLeft_Prefab.prefab" parentTransform="LeftHand" localPos="-0.1171,0.004,-0.0187" localRot="-30.53241,-11.3179,135.1055">
+			<requirement name="!IsFPV"/>
+		</triggered_effect><triggered_effect trigger="onSelfPrimaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+		<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="LeftKnuckles"/>
+	
+	</effect_group>
+	<effect_group name="Power Attack">
+		<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+		<!-- <passive_effect name="AttacksPerMinute" operation="perc_add" value="-.3" tags="secondary"/> -->
+		<passive_effect name="StaminaLoss" operation="base_set" value="17.3" tags="secondary"/>
+		
+	</effect_group>
+	<effect_group name="sneak damage bonus">
+		<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+		<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<passive_effect name="DamageBonus" operation="base_add" value="4"/>
+			<passive_effect name="EntityDamage" operation="perc_add" value="4" tags="perkDeepCuts"/>
+			<display_value name="dEntityDamageSneak" value="4"/>
+	</effect_group>
+	<effect_group name="corpseRemoval">
+		<requirement name="!IsAlive" target="other"/>
+		<requirement name="EntityTagCompare" target="other" tags="walker,crawler,spider"/>
+			<passive_effect name="EntityDamage" operation="base_add" value="500"/>
+	</effect_group>
+</item>
+
+	</append>
+</configs>
